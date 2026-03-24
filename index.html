@@ -89,26 +89,84 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
+      gap: 3rem;
       padding: 8rem 3rem 4rem;
       position: relative;
       overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .hero-bg-line {
+    .hero-top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .hero-title-area {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      z-index: 20;
+    }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      animation: fadeIn 1.2s ease 0.4s both;
+    }
+
+    .hero-image::before {
+      content: '';
       position: absolute;
-      top: 0;
-      right: 15%;
-      width: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, var(--accent) 30%, var(--accent) 70%, transparent);
-      opacity: 0.15;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 60%);
+      opacity: 0.08;
+      border-radius: 50%;
+      filter: blur(40px);
+      z-index: -1;
     }
 
-    .hero-content {
-      max-width: 780px;
+    .hero-image img {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 3px solid var(--border);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      filter: brightness(0.85);
+      transition: border-color 0.3s;
+    }
+
+    .hero-image img:hover {
+      border-color: var(--accent);
     }
 
     .hero-tag {
@@ -140,13 +198,20 @@
     }
 
     .hero-sub {
-      margin-top: 1.8rem;
-      font-size: 1.1rem;
+      margin-top: 2rem;
+      font-size: 1.05rem;
       font-weight: 300;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 520px;
+      color: var(--text);
+      line-height: 1.8;
+      max-width: 800px;
+      text-align: center;
       animation: fadeUp 0.7s ease 0.2s both;
+      opacity: 0.9;
+    }
+
+    .hero-sub strong {
+      color: var(--accent);
+      font-weight: 500;
     }
 
     /* Social links row */
@@ -154,6 +219,7 @@
       display: flex;
       gap: 1.2rem;
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 2.5rem;
       animation: fadeUp 0.7s ease 0.3s both;
     }
@@ -194,6 +260,7 @@
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
       margin-top: 1.5rem;
       animation: fadeUp 0.7s ease 0.4s both;
     }
@@ -244,6 +311,8 @@
       color: var(--accent);
       transform: translateY(-2px);
     }
+
+
 
     /* SECTIONS */
     section {
@@ -906,6 +975,27 @@
       margin-top: 0.8rem;
     }
 
+    @media (max-width: 900px) {
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+        gap: 2rem;
+      }
+
+      .hero-top {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .hero-title-area {
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-image img {
+        max-width: 180px;
+      }
+    }
+
     @media (max-width: 768px) {
       .contact-wrapper {
         grid-template-columns: 1fr;
@@ -926,7 +1016,12 @@
       }
 
       .hero {
-        padding: 7rem 1.5rem 3rem;
+        padding: 5rem 1.5rem 3rem;
+        gap: 1.5rem;
+      }
+
+      .hero-image img {
+        max-width: 130px;
       }
 
       section {
@@ -962,16 +1057,25 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero" style="max-width:100%;padding-top:8rem;">
-    <div class="hero-bg-line"></div>
-    <div class="hero-content">
-      <div class="hero-tag">B.Tech CSE &nbsp;·&nbsp; ML / AI</div>
-      <h1>Donna<br><span>George</span></h1>
-      <p class="hero-sub">
-        Computer Science student at Lovely Professional University, Punjab.
-        Passionate about machine learning, data analysis, and building intelligent systems
-        that solve real-world problems. Dean's List, Top 10%.
-      </p>
+  <section class="hero">
+    <div class="hero-top">
+      <div class="hero-image">
+        <img src="profile_no_bg.png" alt="Donna George" />
+      </div>
+      <div class="hero-title-area">
+        <div class="hero-tag">B.Tech CSE &nbsp;·&nbsp; ML / AI</div>
+        <h1>Donna<br><span>George</span></h1>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-sub">
+        <p>I am a Computer Science Engineering student at <strong>Lovely Professional University</strong> with a deep
+          passion for <strong>Machine Learning, Artificial Intelligence, and Data Analysis</strong>. My academic journey
+          has been driven by an insatiable curiosity for building intelligent systems that solve real-world problems.
+        </p>
+        <p style="margin-top: 1rem;">I've honed my analytical thinking and software development
+          skills. I thrive on translating noisy, complex data into actionable insights and robust models.</p>
+      </div>
 
       <!-- Social Links -->
       <div class="social-row">
@@ -1000,7 +1104,7 @@
 
       <!-- CTA Buttons -->
       <div class="action-row">
-        <button class="btn-primary" onclick="openCV()">
+        <button class="btn-primary" onclick="document.getElementById('cvModal').classList.add('active');">
           <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
             <path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-6 2h12v2H6v-2z" />
           </svg>
@@ -1019,10 +1123,10 @@
 
   <div class="divider"></div>
 
-  <!-- TECHNICAL SKILLS -->
+  <!-- SKILLS -->
   <section id="skills">
     <div class="section-label">Expertise</div>
-    <h2 class="section-title">Technical Skills</h2>
+    <h2 class="section-title">Skills</h2>
     <div class="skills-grid">
       <div class="skill-card">
         <div class="skill-card-title">Programming</div>
@@ -1070,6 +1174,17 @@
         <div class="skill-tags">
           <span class="skill-tag">Automation Anywhere</span>
           <span class="skill-tag">Tkinter</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Collaboration</span>
+          <span class="skill-tag">Problem-Solving</span>
+          <span class="skill-tag">Adaptability</span>
+          <span class="skill-tag">Organization</span>
+          <span class="skill-tag">Time Management</span>
         </div>
       </div>
     </div>
@@ -1187,7 +1302,7 @@
     <h2 class="section-title">Training</h2>
     <div class="training-card">
       <div class="training-org">Lovely Professional University</div>
-      <div class="training-period">Jun 2025 — Jul 2025 &nbsp;·&nbsp; AI &amp; ML for Real-World Problem Solving</div>
+      <div class="training-period">Jun 2025 — Jul 2025 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/15cEm2xbyZXfKycTjGppvQ6AO35JxK16H/view?usp=drive_link" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px;">AI &amp; ML for Real-World Problem Solving</a></div>
       <ul class="training-points">
         <li>Applied machine learning techniques to real-world datasets involving ambiguity and noisy data.</li>
         <li>Worked with Python, Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn for modeling and analysis.</li>
@@ -1422,8 +1537,18 @@
         <div class="modal-title">Donna George — Curriculum Vitae</div>
         <button class="modal-close" onclick="closeModal('cvModal')">✕</button>
       </div>
-      <div class="modal-body" style="padding:0;">
-        <iframe class="pdf-frame" id="cvFrame" src=""></iframe>
+      <div class="modal-body" style="padding: 1.5rem; text-align: center;">
+        <img src="Donna_CV.jpg" alt="Donna George CV"
+          style="max-width: 100%; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.4); border-radius: 4px;" />
+        <div style="margin-top: 1.5rem;">
+          <a href="Donna_CV.pdf" download="Donna_George_CV.pdf" class="btn-primary"
+            style="display: inline-flex; align-items: center; text-decoration: none; justify-content: center;">
+            <svg style="width:16px;height:16px;fill:currentColor;margin-right:8px;" viewBox="0 0 24 24">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+            </svg>
+            Download PDF
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -1447,6 +1572,9 @@
             </div>
             <a class="cert-btn" href="https://www.hackerrank.com/certificates/de09d909ca74" target="_blank"
               rel="noopener">Open ↗</a>
+            <div class="cert-card-preview">
+              <iframe src="../hackerrank-python.pdf#view=FitH" frameborder="0"></iframe>
+            </div>
           </div>
           <div class="cert-card">
             <div>
@@ -1456,6 +1584,9 @@
             <a class="cert-btn"
               href="https://certificates.automationanywhere.com/58f42100-8bf4-4c84-bab8-ba95860e88f3#%23acc.2xZLTfcj"
               target="_blank" rel="noopener">Open ↗</a>
+            <div class="cert-card-preview">
+              <iframe src="../Automation anywhere certification.pdf#view=FitH" frameborder="0"></iframe>
+            </div>
           </div>
           <div class="cert-card">
             <div>
@@ -1465,11 +1596,16 @@
             <a class="cert-btn"
               href="https://drive.google.com/file/d/1Pq4mefDJ8hxAg0dfl8AyCkP8Jyhhm6tq/view?usp=sharing" target="_blank"
               rel="noopener">Open ↗</a>
+            <div class="cert-card-preview">
+              <img src="../cse pathshala.png" alt="CSE Pathshala Certificate" style="width: 300px; height: 150px; object-fit: contain; border: 1px solid var(--border); border-radius: 4px;">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 
   <script>
     // Embed the CV as base64 PDF
@@ -1547,5 +1683,7 @@
     });
   </script>
 </body>
+
+</html>
 
 </html>
